@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Evently - College Tech Fest</title>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Space+Grotesk:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="icon" type="image/png" href="images/seris.png" />
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1919e6',
+                        'background-light': '#f6f6f8',
+                        'background-dark': '#111121',
+                    },
+                    fontFamily: {
+                        display: ['Space Grotesk'],
+                    },
+                    borderRadius: {
+                        DEFAULT: '0.25rem',
+                        lg: '0.5rem',
+                        xl: '0.75rem',
+                        full: '9999px'
+                    },
+                },
+            },
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <style>
+        #event-modal,
+        #college-select-modal {
+            display: none;
+        }
+        #event-modal:target,
+        #college-select-modal:target {
+            display: flex;
+        }
+        .menu-icon span {
+            transition: transform 0.3s ease-out;
+        }
+        #mobile-menu-toggle:checked ~ .menu-icon span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        #mobile-menu-toggle:checked ~ .menu-icon span:nth-child(2) {
+            opacity: 0;
+        }
+        #mobile-menu-toggle:checked ~ .menu-icon span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-out;
+        }
+        #mobile-menu-toggle:checked + #mobile-menu {
+            transform: translateX(0);
+        }
+    </style>
+    
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="flex flex-col min-h-screen">
+    <header class="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-8">
+    <!-- First Icon -->
+
+    <!-- Second Image -->
+    <a class="flex items-center gap-2 text-gray-900 dark:text-white" href="#">
+        <img src="images/rit-logo.png" alt="Logo 1" class="h-20 w-20">
+    </a>
+
+    <!-- Third Image -->
+    <a class="flex items-center gap-2 text-gray-900 dark:text-white" href="#">
+        <img src="images/techritz-logo.png" alt="Logo 2" class="h-8 w-30">
+    </a>                    
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                  <a class="text-sm font-medium hover:text-primary transition-colors" href="home.html#home">Home</a>
+  <a class="text-sm font-medium hover:text-primary transition-colors" href="home.html#about">About</a>
+  <a class="text-sm font-medium hover:text-primary transition-colors" href="home.html#events">Events</a>
+  <a class="text-sm font-medium hover:text-primary transition-colors" href="home.html#register">Register</a>
+  <a class="text-sm font-medium hover:text-primary transition-colors" href="home.html#contact">Contact</a>
+                    </nav>
+
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200 transition-colors">
+                       
+                    </button>
+                    <a href="home.html">
+  <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-6 cursor-pointer" 
+       style='background-image: url("images/icon.png");'>
+  </div>
+</a>
+
+
+                    <label class="md:hidden p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200 transition-colors cursor-pointer z-50" for="mobile-menu-toggle">
+                        <input class="hidden" id="mobile-menu-toggle" type="checkbox"/>
+                        <div class="menu-icon flex flex-col space-y-1.5">
+                            <span class="block w-6 h-0.5 bg-current"></span>
+                            <span class="block w-6 h-0.5 bg-current"></span>
+                            <span class="block w-6 h-0.5 bg-current"></span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Floating Seris Technology Badge -->
+<a href="https://seris.site" target="_blank">
+  <div class="fixed bottom-4 right-4 z-50 flex items-center gap-2 bg-white p-2 rounded-md shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300">
+
+    <!-- Brand Name -->
+    <span class="text-xs font-semibold text-gray-800">Seris Technology</span>
+        <!-- Logo -->
+    <div class="bg-center bg-no-repeat bg-cover rounded-full w-6 h-6"
+         style='background-image: url("images/seris.png");'>
+    </div>
+
+    <!-- Close Icon -->
+    <button onclick="this.parentElement.parentElement.style.display='none'" 
+            class="ml-2 text-gray-500 hover:text-red-500 font-bold text-sm">
+      ✕
+    </button>
+  </div>
+</a>
+
+
+    <input class="hidden peer" id="mobile-menu-toggle" type="checkbox"/>
+    <div class="fixed inset-0 z-10 bg-background-light dark:bg-background-dark p-4 pt-20 transform translate-x-full peer-checked:translate-x-0 transition-transform duration-300 ease-in-out" id="mobile-menu">
+        <nav class="flex flex-col items-center justify-center h-full gap-8">
+            <a class="text-2xl font-semibold text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors" href="#">Home</a>
+            <a class="w-full max-w-xs text-center bg-primary text-white font-bold py-4 px-6 rounded-lg hover:bg-primary/90 transition-colors text-2xl" href="#college-select-modal">Register Now</a>
+        </nav>
+    </div>
+
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 peer-checked:hidden">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-8">
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500">search</span>
+                    <input id="searchInput" class="w-full h-12 sm:h-14 pl-12 pr-4 rounded-lg bg-gray-200 dark:bg-gray-800 border-transparent focus:border-primary focus:ring-primary text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400" placeholder="Search events..." type="text"/>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Events</h2>
+                <div class="flex items-center gap-2 overflow-x-auto pb-2 -mb-2">
+                    <button class="filter-btn px-4 py-2 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-white flex-shrink-0" data-filter="all">All</button>
+                    <button class="filter-btn px-4 py-2 text-sm font-medium rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors flex-shrink-0" data-filter="technical">Technical</button>
+                    <button class="filter-btn px-4 py-2 text-sm font-medium rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors flex-shrink-0" data-filter="non-technical">Non-Technical</button>
+                    <button class="filter-btn px-4 py-2 text-sm font-medium rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors flex-shrink-0" data-filter="day1">Day 1</button>
+                    <button class="filter-btn px-4 py-2 text-sm font-medium rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors flex-shrink-0" data-filter="day2">Day 2</button>
+                </div>
+            </div>
+
+            <div id="eventsGrid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
+        </div>
+    </main>
+</div>
+
+<div class="fixed inset-0 z-50 items-center justify-center bg-black/80 p-4" id="event-modal">
+    <div class="relative max-w-4xl max-h-[90vh] w-full bg-background-light dark:bg-background-dark rounded-xl overflow-hidden flex flex-col md:flex-row">
+        <div id="modalPoster" class="w-full md:w-1/2 aspect-[3/4] bg-cover bg-center"></div>
+        <div class="w-full md:w-1/2 p-6 sm:p-8 overflow-y-auto">
+            <h2 id="modalTitle" class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white"></h2>
+            <div class="flex items-center gap-4 mt-4 text-gray-600 dark:text-gray-300">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-lg">event</span>
+                    <p id="modalDay" class="text-sm font-medium"></p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-lg">location_on</span>
+                    <p id="modalVenue" class="text-sm font-medium"></p>
+                </div>
+            </div>
+            <div class="mt-6 border-t border-gray-200 dark:border-gray-800 pt-6">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Description</h3>
+                <p id="modalDescription" class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed"></p>
+            </div>
+            <div class="mt-6">
+                <a class="w-full block text-center bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-primary/90 transition-colors" href="#college-select-modal">Register Now</a>
+            </div>
+        </div>
+        <a class="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors" href="#">
+            <span class="material-symbols-outlined text-3xl">close</span>
+        </a>
+    </div>
+</div>
+
+<div class="fixed inset-0 z-50 items-center justify-center bg-black/80 p-4" id="college-select-modal">
+    <div class="relative max-w-sm w-full bg-background-light dark:bg-background-dark rounded-xl overflow-hidden">
+        <div class="p-6 sm:p-8">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white text-center">Select Your College</h3>
+            <div class="mt-6 space-y-4">
+                <a class="w-full block text-center bg-primary/10 dark:bg-primary/20 text-primary dark:text-white font-semibold py-3 px-6 rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors" href="https://forms.gle/oWdfMJiRh9rNC4cp9">Rajalakshmi Institute of Technology</a>
+                <a class="w-full block text-center bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold py-3 px-6 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors" href="https://forms.gle/vtwNZcMZsbp5ot79A">Other College</a>
+            </div>
+        </div>
+        <a class="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors" href="#">
+            <span class="material-symbols-outlined text-3xl">close</span>
+        </a>
+    </div>
+</div>
+<footer class="bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-gray-800">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-gray-500 dark:text-gray-400">
+<p>Developed by Seris</p>
+</div>
+</footer>
+
+<script>
+const events = [
+    { poster: "innovista.png", name: "Project Display – INNOVISTA", description: "Project done by students.", venue: "A BLOCK", day: "Day 1", type: "technical" },
+    { poster: "BUG BLITZ.png", name: "Code Debugging – BUG BLITZ", description: "Participants will be given code snippets containing errors. Their task is to identify and correct the mistakes to achieve the desired output.", venue: "C2-01", day: "Day 1", type: "technical" },
+    { poster: "QUEST CODE.png", name: "Tech Treasure Hunt – QUEST CODE", description: "Participants should search the QR code (2 QR code) in the campus - which leads to the next clue - to find the technical term.", venue: "C4-01", day: "Day 1", type: "technical" },
+    { poster: "Short film contest.png", name: "Short Film – SHORT FILM CONTEST", description: "Participants will create and present a short film based on a given tech theme. The event evaluates creativity, technical understanding, and storytelling skills.", venue: "C2-02", day: "Day 2", type: "technical" },
+    { poster: "INNOVATE HUB.png", name: "Hackathon – INNOVATE HUB", description: "Participants will collaborate in teams to develop innovative solutions for real-world problems within a limited time. The event tests coding skills, creativity, teamwork, and problem-solving under pressure.", venue: "STEVE JOB", day: "Day 1", type: "technical" },
+    { poster: "CIRCUIT FIXERS.png", name: "Circuit Debugging – CIRCUIT FIXERS", description: "Incomplete/Error circuit given to participants - and correct circuit has to be rectified in the given time.", venue: "C Block 1st Floor, C3-02", day: "Day 1", type: "technical" },
+    { poster: "VERDESCAPES.png", name: "Sustainable Campus Plan Contest – VERDESCAPES", description: "A contest to design innovative and sustainable campus layouts. Participants will focus on energy efficiency, green buildings, and smart resource management.", venue: "-", day: "Day 2", type: "technical" },
+    { poster: "logo clash.png", name: "Logo Design Battle – LOGO CLASH", description: "Participants will showcase their creativity by designing unique and meaningful logos. The event tests imagination, design skills, and ability to convey ideas visually.", venue: "C2-01", day: "Day 2", type: "technical" },
+    { poster: "DEBATE.png", name: "AI vs Human Debate – DEBATE", description: "A thrilling debate where sharp human intellect goes head-to-head with artificial intelligence, challenging perspectives and redefining the future of reasoning.", venue: "C2-03", day: "Day 1", type: "technical" },
+    { poster: "BYTE CODE.png", name: "Code Golf – BYTE CODE", description: "Participants should solve the shortest possible code to solve the given problem.", venue: "C3-03", day: "Day 2", type: "technical" },
+    { poster: "WEB VISION.png", name: "Web Development – WEB VISION", description: "Proposing the idea and the app/website visuals during the event (will be shared to students a month before the event to create the project - best 3 will be selected for presenting).", venue: "C3-01", day: "Day 1", type: "technical" },
+    { poster: "Circuit Rush.png", name: "Circuit Blitz – CIRCUIT RUSH", description: "Build a working circuit from a box of random components in the stipulated time.", venue: "C Block 1st Floor, C3-02", day: "Day 2", type: "technical" },
+    { poster: "TECHPAOMINE.png", name: "Tech Charades – TECHPAOMIME", description: "Dumb charades but with tech-related words, gadgets, or concepts.", venue: "C4-01", day: "Day 2", type: "technical" },
+    { poster: "MEME O TECH.png", name: "Technical Memes – MEME-O-TECH", description: "Participants will design and share creative memes based on technology, coding, and innovation. The event blends humor with technical knowledge to entertain while showcasing creativity.", venue: "C2-02", day: "Day 2", type: "technical" },
+    { poster: "brainbyte Quest.png", name: "Puzzle with Tech Quiz – BRAINBYTE QUIZ", description: "A fast-paced, interactive quiz designed to challenge knowledge, quick thinking, and problem-solving skills across diverse domains.", venue: "C2-05", day: "Day 2", type: "technical" },
+    { poster: "RESUME WAR.png", name: "Resume Building – RESUME WAR", description: "Participants will create a resume while their systems are completely cut off from the internet.", venue: "C2-04", day: "Day 2", type: "technical" },
+    { poster: "EDSPARK.png", name: "Edu Tech App Development – EDSPARK", description: "Participants are tasked with designing and developing innovative educational apps that support remote learning or low-cost educational resources.", venue: "-", day: "Day 2", type: "technical" },
+    { poster: "Play craft.png", name: "Game Development – PLAY CRAFT", description: "Participants will design and develop an interactive game based on a given theme. The event tests creativity, programming skills, and the ability to build engaging user experiences.", venue: "C2-02", day: "Day 1", type: "technical" },
+    { poster: "PROTOPLAY.png", name: "Arduino/ESP32 – PROTOPLAY", description: "Participants will work on Arduino/ESP32 projects.", venue: "-", day: "Day 2", type: "technical" },
+    { poster: "PROMPT WAR FIRE.png", name: "AI Prompt Wars – PROMPT WAR FIRE", description: "AI Prompt War is a competitive battle of creativity where teams craft the most imaginative, clear, and effective prompts to direct AI. Across three elimination rounds, participants will showcase their originality, clarity and adaptability in storytelling, visuals and real-world problem-solving.", venue: "C2-01", day: "Day 2", type: "technical" },
+    { poster: "EditX.png", name: "Editing Competition – EDITX", description: "The whole event happening will be clicked and edited by the participants in the stipulated time - and the best ones will be awarded and posted on the official Instagram page.", venue: "-", day: "Day 2", type: "technical" },
+    { poster: "CRYPTOHUNT.png", name: "Cipher Chase – CRYPTOHUNT", description: "It is a clue-based decoding event where participants unlock a series of locked folders, each clue leading to the next challenge. Winners will be judged based on the maximum number of folders successfully unlocked within the time limit.", venue: "C4-02", day: "Day 1", type: "technical" },
+    { poster: "IDEAFORGE.png", name: "Energy Innovation Pitch – IDEAFORGE", description: "Presenting the startup ideas.", venue: "C3-01", day: "Day 2", type: "technical" },
+    { poster: "3D DESIGNING CONTEST.png", name: "CAD – 3D DESIGNING CONTEST", description: "Participants use Computer-Aided Design (CAD) software to create precise and innovative models. From mechanical components to creative structures, this challenge tests your ability to think spatially, design accurately, and apply engineering concepts in real time.", venue: "C2-02", day: "Day 2", type: "technical" },
+    { poster: "Beat Bot.png", name: "AI Karaoke – BEATBOT", description: "Participants will use AI tools to generate original lyrics, music, and vocals. The event showcases creativity, technical skills, and the power of AI in music creation.", venue: "C2-04", day: "Day 2", type: "technical" },
+    { poster: "DATA CRAPE.png", name: "Data Visualization – DATACRAPE", description: "Participants will analyze datasets and present insights through clear, creative visualizations. The event tests technical skills, analytical thinking, and the ability to convey data-driven stories effectively.", venue: "C2-03", day: "Day 2", type: "technical" },
+    { poster: "TECHTACTIX.png", name: "Mystery Solving – TECHTACTIX", description: "To give solution for case study.", venue: "C3-01", day: "Day 2", type: "technical" },
+    { poster: "TECHWORD SCRAMBLE.png", name: "Jumbled Words – TECHWORD SCRAMBLE", description: "Technical terms are in jumbled words - participants in teams should find the words.", venue: "C4-01", day: "Day 2", type: "technical" },
+    { poster: "SKETCH AND GUESS.png", name: "Draw and Find – SKETCH AND GUESS", description: "Terms are being drawn and the other person should find.", venue: "C3-03", day: "Day 1", type: "technical" },
+    { poster: "CARBONIX.png", name: "Carbon Footprint Calculator Coding Event – CARBONIX", description: "A coding contest where participants design innovative tools on developing software that estimates emissions from daily activities and suggests ways to reduce them.", venue: "C2-03", day: "Day 1", type: "technical" },
+    { poster: "LOGO BLITZ.png", name: "Logo Guessing – LOGO BLITZ", description: "Participants will be shown incomplete or altered versions of popular logos. They must identify and connect them to the correct brand, testing memory and observation skills.", venue: "C2-01", day: "Day 2", type: "technical" },
+    { poster: "FACT OR FLOP.png", name: "Tech Fact or Myth – FACT OR FLOP", description: "Tech Facts are presented and participants should find whether it's a true fact or a false fact.", venue: "C2-04", day: "Day 1", type: "technical" },
+    { poster: "Balloon Trivia.png", name: "Technical Quiz – BALLOON TRIVIA", description: "Participants will bust the balloon and answer for the question inside it.", venue: "C2-03", day: "Day 1", type: "technical" },
+    { poster: "EMOJI GADGET.png", name: "Guess the Gadget – EMOJI GADGET", description: "Participants should guess the gadget using emojis.", venue: "C3-03", day: "Day 2", type: "technical" },
+    { poster: "API FUSION.png", name: "API Mashup Challenge – API FUSION", description: "Different public APIs used to create small functional tools.", venue: "C4-03", day: "Day 2", type: "technical" },
+    { poster: "holo quest.png", name: "Hologram Puzzle Hunt – THE 3D QUEST – HOLO QUEST", description: "Participants wear AR glasses or use a projection to see a 3D holographic maze or puzzle in the air. They move around physically to unlock clues and solve it. Some clues only appear when the player is at a certain position or angle.", venue: "C4-03", day: "Day 1", type: "technical" },
+    { poster: "PCB CLASH.png", name: "PCB Design Battle – PCB CLASH", description: "Print layouts of circuits in software - PCB should be as small as possible.", venue: "C Block 1st Floor, C3-02", day: "Day 2", type: "technical" },
+    { poster: "Reverse Quest.png", name: "Reverse Knowledge Challenge – TECH EDITION – REVERSE QUEST", description: "Participants will be given program outputs, and they must deduce the original code logic. The event tests problem-solving, analytical thinking, and programming expertise.", venue: "C4-03", day: "Day 2", type: "technical" },
+    { poster: "MEDXPLORE.png", name: "Med Tech Innovation Challenge – MEDXPLORE", description: "Participants will design and prototype medical or health-monitoring devices using readily available, low-cost sensors and microcontrollers.", venue: "C3-03", day: "Day 2", type: "technical" },
+    { poster: "lightinpitch.png", name: "Paper Presentation – LIGHTING PITCH", description: "Participants will research and present their technical papers on innovative topics. The event evaluates subject knowledge, presentation skills, and the ability to communicate ideas effectively.", venue: "C-303", day: "Day 2", type: "technical" },
+    { poster: "Free fire.png", name: "E-Sports – FREE FIRE", description: "Games like Free Fire.", venue: "RSB", day: "Day 2", type: "non-technical" },
+    { poster: "Stumble Guys.png", name: "E-Sports – STUMBLE GUYS", description: "Games like Stumble Guys.", venue: "RSB", day: "Day 2", type: "non-technical" },
+    { poster: "IPL AUCTION.png", name: "Mini Auction – IPL Auction", description: "Participate in a fun IPL-style auction.", venue: "STEVE JOB", day: "Day 1", type: "non-technical" }
+];
+
+let currentFilter = 'all';
+let searchQuery = '';
+
+function renderEvents() {
+    const grid = document.getElementById('eventsGrid');
+    const filtered = events.filter(e => {
+        const matchesFilter = currentFilter === 'all' || 
+                            e.type === currentFilter || 
+                            e.day.toLowerCase().replace(' ', '') === currentFilter;
+        const matchesSearch = e.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                            e.description.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesFilter && matchesSearch;
+    });
+
+    grid.innerHTML = filtered.map((event, idx) => `
+        <a href="#event-modal" onclick="showEvent(${events.indexOf(event)})">
+            <div class="group relative aspect-[3/4] rounded-xl overflow-hidden bg-cover bg-center" style='background-image: url("poster/${event.poster}");'>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div class="relative h-full flex flex-col justify-end p-3 sm:p-5 text-white">
+                    <h3 class="text-base sm:text-lg font-bold leading-tight">${event.name}</h3>
+                    <p class="text-xs sm:text-sm text-gray-300 mt-1">${event.day} • ${event.venue}</p>
+                </div>
+            </div>
+        </a>
+    `).join('');
+}
+
+function showEvent(idx) {
+    const e = events[idx];
+    document.getElementById('modalPoster').style.backgroundImage = `url("poster/${e.poster}")`;
+    document.getElementById('modalTitle').textContent = e.name;
+    document.getElementById('modalDay').textContent = e.day;
+    document.getElementById('modalVenue').textContent = e.venue;
+    document.getElementById('modalDescription').textContent = e.description;
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('bg-primary/10', 'text-primary', 'dark:bg-primary/20', 'dark:text-white');
+            b.classList.add('bg-gray-200', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+        });
+        this.classList.remove('bg-gray-200', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+        this.classList.add('bg-primary/10', 'text-primary', 'dark:bg-primary/20', 'dark:text-white');
+        currentFilter = this.dataset.filter;
+        renderEvents();
+    });
+});
+
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    searchQuery = e.target.value;
+    renderEvents();
+});
+
+renderEvents();
+</script>
+</body>
+</html>
